@@ -5,7 +5,7 @@ import dominoes.*;
 import java.util.ArrayList;
 
 public class ComputerPlayer implements DominoPlayer {
-    private int points;
+    private int points = 0;
     private String name;
     private ArrayList<Bone> bones = new ArrayList<>();
 
@@ -16,14 +16,12 @@ public class ComputerPlayer implements DominoPlayer {
         {
             if(bones.get(i).left() == table.left())
             {
-                points -= bones.get(i).weight();
                 Play play = new Play(bones.get(i), Play.LEFT);
                 bones.remove(i);
                 return play;
             }
             else if(bones.get(i).right() == table.right())
             {
-                points -= bones.get(i).weight();
                 Play play = new Play(bones.get(i), Play.RIGHT);
                 bones.remove(i);
                 return play;
@@ -36,13 +34,11 @@ public class ComputerPlayer implements DominoPlayer {
     @Override
     public void takeBack(Bone bone) {
         bones.add(bone);
-        points += bones.get(bones.size()-1).weight();
     }
 
     @Override
     public void draw(BoneYard boneYard) {
         bones.add(boneYard.draw());
-        points += bones.get(bones.size()-1).weight();
     }
 
     @Override
