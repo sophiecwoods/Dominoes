@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class ComputerPlayer implements DominoPlayer {
     private int points = 0;
     private String name;
-    private ArrayList<Bone> bones = new ArrayList<>();
+    protected ArrayList<Bone> bones = new ArrayList<>();
 
     @Override
     public Play makePlay(Table table) throws CantPlayException {
