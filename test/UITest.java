@@ -23,13 +23,6 @@ public class UITest {
     }
 
     @Test
-    void getNumberOfPointsToWin() {
-        int numOfPoints = 10;
-        textDominoesUI.setNumberOfPointsToWin(numOfPoints);
-        assertEquals(numOfPoints, textDominoesUI.getNumberOfPointsToWin());
-    }
-
-    @Test
     void numberOfPointsToWin() {
         int numOfPoints = 10;
         textDominoesUI.setNumberOfPointsToWin(numOfPoints);
