@@ -17,4 +17,37 @@ public class TextDominoesUI implements DominoUI {
     public void displayInvalidPlay(DominoPlayer dominoPlayer) {
 
     }
+
+    public int getNumberOfPointsToWin()
+    {
+        return 0;
+    }
+
+    public void setNumberOfPointsToWin(int points)
+    {
+    }
+
+    public PlayerMode getPlayerMode()
+    {
+        return PlayerMode.Unknown;
+    }
+
+    public void setPlayerMode(PlayerMode mode)
+    {
+    }
+
+    public boolean startNewGame()
+    {
+        return false;
+    }
+
+    public int showCurrentRound()
+    {
+        return 0;
+    }
+
+    public int showBones(DominoPlayer player)
+    {
+        return 0;
+    }
 }
