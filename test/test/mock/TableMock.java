@@ -1,4 +1,7 @@
-package dominoes;
+package test.mock;
+
+import dominoes.Bone;
+import dominoes.Table;
 
 import java.util.Vector;
 

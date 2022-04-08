@@ -1,6 +1,7 @@
 package dominoes.players;
 
 import dominoes.*;
+import test.mock.TableMock;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,13 +36,13 @@ public class ComputerPlayerTest {
         // test makePlay returns Play object when valid play is possible
         computerPlayer.bones = new ArrayList<>(Arrays.asList(new Bone(1, 4), new Bone(6, 6)));
         Play actualPlay = computerPlayer.makePlay(table);
-        assertTrue(actualPlay != null);
+        assertNotNull(actualPlay);
     }
 
     @Test
     void makePlayCantPlay() {
         // test makePlay throws exception when no play is possible
         computerPlayer.bones = new ArrayList<>(Arrays.asList(new Bone(3, 4), new Bone(6, 6)));
-        Assertions.assertThrows(CantPlayException.class, () -> { computerPlayer.makePlay(table);});
+        Assertions.assertThrows(CantPlayException.class, () -> computerPlayer.makePlay(table));
     }
 }
