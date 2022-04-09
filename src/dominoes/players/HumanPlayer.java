@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class HumanPlayer implements DominoPlayer {
     private int points = 0;
     private String name;
-    private ArrayList<Bone> bones = new ArrayList<>();
+    protected ArrayList<Bone> bones = new ArrayList<>();
 
     @Override
     public Play makePlay(Table table) throws CantPlayException {
@@ -22,13 +22,22 @@ public class HumanPlayer implements DominoPlayer {
 
         System.out.println(options);
 
-        Scanner inputBone = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
         System.out.println("Please select a bone");
-        int selectedBone = Integer.parseInt(inputBone.nextLine()) -1;
+        int selectedBone = Integer.parseInt(input.nextLine()) -1;
 
-        Scanner inputSide = new Scanner(System.in);
+        if ((selectedBone < 0) || (selectedBone > options.size()-1)) {
+            System.out.println("No such bone");
+            throw new CantPlayException();
+        }
+
         System.out.println("Please select a side, 0 for left, 1 for right");
-        int selectedSide = Integer.parseInt(inputSide.nextLine());
+        int selectedSide = Integer.parseInt(input.nextLine());
+
+        if ((selectedSide < 0) || (selectedSide > 1)) {
+            System.out.println("You must pick 0 or 1");
+            throw new CantPlayException();
+        }
 
         Play result;
         var bone = bones.get(selectedBone);
