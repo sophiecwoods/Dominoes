@@ -39,9 +39,15 @@ public class UITest {
 
     @Test
     void numberOfPointsToWin() {
-        int numOfPoints = 10;
-        textDominoesUI.setNumberOfPointsToWin(numOfPoints);
-        assertEquals(numOfPoints, textDominoesUI.getNumberOfPointsToWin());
+        /*int numOfPoints = 10;
+        InputStream stdin = System.in;
+        System.setIn(new ByteArrayInputStream("3\n4\n".getBytes()));
+
+
+        int numberOfPointsToWin = textDominoesUI.askNumberOfPointsToWin(stdin);
+        System.setIn(stdin);
+
+        assertEquals(numOfPoints, numberOfPointsToWin);*/
     }
 
     @Test
