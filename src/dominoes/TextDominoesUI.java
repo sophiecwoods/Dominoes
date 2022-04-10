@@ -50,4 +50,16 @@ public class TextDominoesUI implements DominoUI {
     {
         return 0;
     }
+
+    public void displayCurrentPoints(DominoPlayer player1, DominoPlayer player2) {
+
+    }
+
+    public void displayGameWinner(DominoPlayer player1, DominoPlayer player2) {
+
+    }
+
+    public void displayInvalidMove() {
+
+    }
 }
