@@ -24,19 +24,17 @@ public class HumanPlayer implements DominoPlayer {
 
         Scanner input = new Scanner(System.in);
         System.out.println("Please select a bone");
-        int selectedBone = Integer.parseInt(input.nextLine()) -1;
+        int selectedBone = validBone(input.nextLine(), options);
 
-        if ((selectedBone < 0) || (selectedBone > options.size()-1)) {
-            System.out.println("No such bone");
-            throw new CantPlayException();
+        while (selectedBone == -1){
+            selectedBone = validBone(input.nextLine(), options);
         }
 
         System.out.println("Please select a side, 0 for left, 1 for right");
-        int selectedSide = Integer.parseInt(input.nextLine());
+        int selectedSide = validSide(input.nextLine());
 
-        if ((selectedSide < 0) || (selectedSide > 1)) {
-            System.out.println("You must pick 0 or 1");
-            throw new CantPlayException();
+        while (selectedSide == -1) {
+            selectedSide = validSide(input.nextLine());
         }
 
         Play result;
@@ -101,5 +99,35 @@ public class HumanPlayer implements DominoPlayer {
     @Override
     public void setName(String s) {
         this.name = s;
+    }
+
+    public int validBone(String s, ArrayList<String> a){
+        int selectedBoneNum = -1;
+        try {
+            selectedBoneNum = Integer.parseInt(s)-1;
+        } catch (Exception e) {
+            System.out.println("Not a valid input, please input numbers.");
+            return -1;
+        }
+        if ((selectedBoneNum < 0) || (selectedBoneNum > a.size()-1)) {
+            System.out.println("No such bone, please try again.");
+            return -1;
+        }
+        return selectedBoneNum;
+    }
+
+    public int validSide(String s){
+        int selectedSideNum = -1;
+        try {
+            selectedSideNum = Integer.parseInt(s);
+        } catch (Exception e) {
+            System.out.println("Not a valid input, please input numbers.");
+            return -1;
+        }
+        if ((selectedSideNum < 0) || (selectedSideNum > 1)) {
+            System.out.println("You must pick 0 or 1");
+            return -1;
+        }
+        return selectedSideNum;
     }
 }
