@@ -8,6 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -61,8 +63,21 @@ public class HumanPlayerTest {
     @Test
     void invalidMakePlay2() throws CantPlayException {
 
-        inputHelper("4", "0");
-        Assertions.assertThrows(CantPlayException.class, () -> humanPlayer.makePlay(table));
+        inputHelper("99\n3", "0");
+        String expected = "No such bone, please try again.";
+
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(output);
+        System.setOut(printStream);
+
+        try {
+            Play play = humanPlayer.makePlay(table);
+        } catch (Exception e){}
+
+        String[] lines = output.toString().split(System.lineSeparator());
+        String actual = lines[lines.length-3]; //position of correct output within all resulting outputs
+
+        assertEquals(expected, actual);
     }
 
     @Test
