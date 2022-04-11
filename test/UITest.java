@@ -7,6 +7,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -98,8 +99,8 @@ public class UITest {
 
     @Test
     void displayGameWinner() {
-        player1.setPoints(50);
-        textDominoesUI.setNumberOfPointsToWin(50);
+        inputHelper("50");
+        //the number of points are stored in Dominoes. It was bad to store it in the UI so this will need to be refactored.
         String printedString = "Winner: Computer Player\n";
         textDominoesUI.displayGameWinner(player1, player2);
         assertEquals(printedString, outContent.toString());
