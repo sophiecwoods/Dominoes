@@ -12,6 +12,7 @@ public class Test {
         DominoPlayer Player2 = textDominoesUI.choosePlayer("2");
 
         Dominoes dom = new Dominoes(textDominoesUI, Player1, Player2, numberOfPointsToWin, 6);
-        dom.play();
+        DominoPlayer winner = dom.play();
+        textDominoesUI.displayGameWinner(winner);
     }
 }

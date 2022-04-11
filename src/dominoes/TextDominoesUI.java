@@ -14,12 +14,12 @@ public class TextDominoesUI implements DominoUI {
 
     @Override
     public void displayRoundWinner(DominoPlayer dominoPlayer) {
-
+        System.out.println("Round winner: " + dominoPlayer.getName());
     }
 
     @Override
     public void displayInvalidPlay(DominoPlayer dominoPlayer) {
-
+        System.out.println("Invalid move by " + dominoPlayer.getName());
     }
 
     public int askNumberOfPointsToWin() {
@@ -47,7 +47,7 @@ public class TextDominoesUI implements DominoUI {
         Scanner input = new Scanner(System.in);
 
         System.out.println("Choose Player " + number + ".");
-        System.out.println("Press 1for Interactive Player");
+        System.out.println("Press 1 for Interactive Player");
         System.out.println("Press 2 for Computer Player");
 
         var playerNum = 0;
@@ -68,10 +68,13 @@ public class TextDominoesUI implements DominoUI {
 
         if(playerNum == 1){
             DominoPlayer player = new HumanPlayer();
+            // can we ask the user to enter the human player name here and then set it
             player.setName("HumanPlayer");
             return player;
         } else {
             DominoPlayer player = new ComputerPlayer();
+            // if two computer players play against themselves then they will both have the same name
+            // which makes it hard to tell which one has won - can we set computerplayer1 and computerplayer2?
             player.setName("ComputerPlayer");
             return player;
         }
@@ -93,14 +96,11 @@ public class TextDominoesUI implements DominoUI {
     }
 
     public void displayCurrentPoints(DominoPlayer player1, DominoPlayer player2) {
-
+        System.out.println("Points:\n" + player1.getName() + ": " + player1.getPoints() +"\n"
+                + player2.getName() + ": " + player2.getPoints());
     }
 
-    public void displayGameWinner(DominoPlayer player1, DominoPlayer player2) {
-
-    }
-
-    public void displayInvalidMove() {
-
+    public void displayGameWinner(DominoPlayer dominoPlayer) {
+        System.out.println("Game Winner: " + dominoPlayer.getName());
     }
 }
