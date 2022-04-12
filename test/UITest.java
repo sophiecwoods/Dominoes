@@ -1,3 +1,5 @@
+import dominoes.Bone;
+import dominoes.BoneYard;
 import dominoes.TextDominoesUI;
 
 import dominoes.players.ComputerPlayer;
@@ -6,10 +8,12 @@ import dominoes.players.HumanPlayer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import test.mock.TableMock;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Vector;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -80,6 +84,57 @@ public class UITest {
         DominoPlayer player = new ComputerPlayer();
         assertEquals(0, textDominoesUI.showBones(player));
     }
+
+    @Test
+    void showBonesInHand(){
+        Bone bone1 = new Bone(1,2);
+        player2.takeBack(bone1);
+        Bone bone2 = new Bone(5,4);
+        player2.takeBack(bone2);
+        String expected = "1 Bone: [2-1], 2 Bone: [5-4]";
+        assertEquals(expected, textDominoesUI.showBonesInHand(player2));
+    }
+
+    @Test
+    void numberOfBonesInBoneyard(){
+        BoneYard boneYard = new BoneYard(6);
+        int expected = boneYard.size();
+        assertEquals(expected, textDominoesUI.numberOfBonesInBoneyard());
+    }
+
+    @Test
+    void viewOfBonesOnTable(){
+        Vector vector = new Vector();
+        vector.addElement(new Bone(1,2));
+        vector.addElement(new Bone(5,4));
+        vector.addElement(new Bone(2,4));
+        TableMock table = new TableMock(vector);
+        String expected = "[2-1][5-4][4-2]";
+        assertEquals(expected, textDominoesUI.viewOfBonesOnTable(table));
+    }
+
+    @Test
+    void humanPlayerDrawBone(){
+        BoneYard boneYard = new BoneYard(6);
+        int original = player2.numInHand();
+        int expected = original + 1;
+        textDominoesUI.humanPlayerDrawBone(player2, boneYard);
+        int actual = player2.numInHand();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void humanPlayerPass() {
+        Vector vector = new Vector();
+        vector.addElement(new Bone(1,2));
+        vector.addElement(new Bone(5,4));
+        TableMock table = new TableMock(vector);
+        String expected = textDominoesUI.viewOfBonesOnTable(table);
+        textDominoesUI.humanPlayerPass(player2);
+        String actual = textDominoesUI.viewOfBonesOnTable(table);
+        assertEquals(expected, actual);
+    }
+
 
     @Test
     void displayPoints() {

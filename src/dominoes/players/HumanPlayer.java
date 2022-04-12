@@ -15,19 +15,12 @@ public class HumanPlayer implements DominoPlayer {
         int leftPips = table.left();
         int rightPips = table.right();
 
-        ArrayList<String> options = new ArrayList<>(); //available bones
-        for (int i = 0; i < bones.size(); i++){
-            options.add((i + 1) + " Bone: [" + bones.get(i).left() + "-" + bones.get(i).right() + "]");
-        }
-
-        System.out.println(options);
-
         Scanner input = new Scanner(System.in);
         System.out.println("Please select a bone");
-        int selectedBone = validBone(input.nextLine(), options);
+        int selectedBone = validBone(input.nextLine(), bones);
 
         while (selectedBone == -1){
-            selectedBone = validBone(input.nextLine(), options);
+            selectedBone = validBone(input.nextLine(), bones);
         }
 
         System.out.println("Please select a side, 0 for left, 1 for right");
@@ -101,7 +94,7 @@ public class HumanPlayer implements DominoPlayer {
         this.name = s;
     }
 
-    public int validBone(String s, ArrayList<String> a){
+    public int validBone(String s, ArrayList<Bone> a){
         int selectedBoneNum = -1;
         try {
             selectedBoneNum = Integer.parseInt(s)-1;

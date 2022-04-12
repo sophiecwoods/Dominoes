@@ -92,6 +92,27 @@ public class TextDominoesUI implements DominoUI {
         return 0;
     }
 
+    public String showBonesInHand(DominoPlayer player){
+        Bone[] playerBones = player.bonesInHand();
+
+        String bonesInHand = "";
+        for (int i = 0; i < playerBones.length; i++) {
+            bonesInHand += i + 1 + " Bone: [" + playerBones[i].left() + "-" + playerBones[i].right() + "]";
+            if (i != playerBones.length-1) {
+                bonesInHand += ", ";
+            }
+        }
+        return bonesInHand;
+    }
+
+    public int numberOfBonesInBoneyard(){return 0;}
+
+    public String viewOfBonesOnTable(Table table){return "";}
+
+    public void humanPlayerDrawBone(DominoPlayer player, BoneYard boneYard){}
+
+    public void humanPlayerPass(DominoPlayer player){}
+
     public void displayCurrentPoints(DominoPlayer player1, DominoPlayer player2) {
 
     }
