@@ -99,7 +99,7 @@ public class UITest {
     void numberOfBonesInBoneyard(){
         BoneYard boneYard = new BoneYard(6);
         int expected = boneYard.size();
-        assertEquals(expected, textDominoesUI.numberOfBonesInBoneyard());
+        assertEquals(expected, textDominoesUI.numberOfBonesInBoneyard(boneYard));
     }
 
     @Test

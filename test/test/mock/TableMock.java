@@ -23,4 +23,15 @@ public class TableMock extends Table {
         return ((Bone)this._layout.lastElement()).right();
     }
 
+    @Override
+    public Bone[] layout() {
+        Bone[] var1 = new Bone[this._layout.size()];
+
+        for(int var2 = 0; var2 < var1.length; ++var2) {
+            var1[var2] = (Bone)this._layout.elementAt(var2);
+        }
+
+        return var1;
+    }
+
 }
