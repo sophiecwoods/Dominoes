@@ -155,16 +155,15 @@ public class UITest {
     @Test
     void displayGameWinner() {
         inputHelper("50");
-        //the number of points are stored in Dominoes. It was bad to store it in the UI so this will need to be refactored.
-        String printedString = "Winner: Computer Player\n";
-        textDominoesUI.displayGameWinner(player1, player2);
+        String printedString = "Game Winner: Computer Player\n";
+        textDominoesUI.displayGameWinner(player1);
         assertEquals(printedString, outContent.toString());
     }
 
     @Test
     void displayInvalidMove() {
-        String printedString = "Invalid move";
-        textDominoesUI.displayInvalidMove();
+        String printedString = "Invalid move by Computer Player\n";
+        textDominoesUI.displayInvalidPlay(player1);
         assertEquals(printedString, outContent.toString());
     }
 }

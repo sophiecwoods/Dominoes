@@ -8,6 +8,7 @@ public class ComputerPlayer implements DominoPlayer {
     private int points = 0;
     private String name;
     protected ArrayList<Bone> bones = new ArrayList<>();
+    private DominoUI textDominoesUI = new TextDominoesUI();
 
     @Override
     public Play makePlay(Table table) throws CantPlayException {
@@ -27,7 +28,7 @@ public class ComputerPlayer implements DominoPlayer {
                 return play;
             }
         }
-
+        textDominoesUI.displayInvalidPlay(this);
         throw new CantPlayException();
     }
 
@@ -77,4 +78,5 @@ public class ComputerPlayer implements DominoPlayer {
     public void setName(String s) {
         name = s;
     }
+
 }
