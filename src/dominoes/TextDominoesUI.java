@@ -9,9 +9,10 @@ import java.util.Scanner;
 public class TextDominoesUI implements DominoUI {
     @Override
     public void display(DominoPlayer[] dominoPlayers, Table table, BoneYard boneYard) {
+        // Show the current round of the game.
+        showCurrentRound();
 
-
-        //display bones on table
+        // Display bones on table
         viewOfBonesOnTable(table);
 
         // Show the number of bones a computer player has.
@@ -92,9 +93,10 @@ public class TextDominoesUI implements DominoUI {
         return false;
     }
 
-    public int showCurrentRound()
+    public void showCurrentRound()
     {
-        return 0;
+        System.out.println("Current Round:");
+
     }
 
     public void showBones(DominoPlayer player)
