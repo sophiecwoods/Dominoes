@@ -71,7 +71,7 @@ public class HumanPlayer implements DominoPlayer {
 
     @Override
     public void newRound() {
-        this.points = 0;
+        bones = new ArrayList<>();
     }
 
     @Override
