@@ -7,6 +7,8 @@ import dominoes.players.HumanPlayer;
 import java.util.Scanner;
 
 public class TextDominoesUI implements DominoUI {
+    private int numOfRounds = 0;
+
     @Override
     public void display(DominoPlayer[] dominoPlayers, Table table, BoneYard boneYard) {
         // Show the current round of the game.
@@ -23,6 +25,7 @@ public class TextDominoesUI implements DominoUI {
     @Override
     public void displayRoundWinner(DominoPlayer dominoPlayer) {
         System.out.println("Round winner: " + dominoPlayer.getName());
+        numOfRounds++;
     }
 
     @Override
@@ -95,8 +98,7 @@ public class TextDominoesUI implements DominoUI {
 
     public void showCurrentRound()
     {
-        System.out.println("Current Round:");
-
+        System.out.println("Current Round:" + numOfRounds);
     }
 
     public void showBones(DominoPlayer player)
