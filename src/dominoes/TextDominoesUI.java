@@ -10,6 +10,8 @@ public class TextDominoesUI implements DominoUI {
     @Override
     public void display(DominoPlayer[] dominoPlayers, Table table, BoneYard boneYard) {
 
+        //display bones on table
+        viewOfBonesOnTable(table);
     }
 
     @Override
@@ -92,7 +94,7 @@ public class TextDominoesUI implements DominoUI {
         return 0;
     }
 
-    public String showBonesInHand(DominoPlayer player){
+    public void showBonesInHand(DominoPlayer player){
         Bone[] playerBones = player.bonesInHand();
 
         String bonesInHand = "";
@@ -102,21 +104,21 @@ public class TextDominoesUI implements DominoUI {
                 bonesInHand += ", ";
             }
         }
-        return bonesInHand;
+        System.out.println(bonesInHand);
     }
 
-    public int numberOfBonesInBoneyard(BoneYard boneYard){
-        return boneYard.size();
+    public void numberOfBonesInBoneyard(BoneYard boneYard){
+        System.out.println(boneYard.size());
     }
 
-    public String viewOfBonesOnTable(Table table){
+    public void viewOfBonesOnTable(Table table){
         Bone[] bonesOnTable = table.layout();
         String view = "";
         for (int i = 0; i < bonesOnTable.length; i++) {
             view += "[" + bonesOnTable[i].left() + "-" + bonesOnTable[i].right() + "]";
         }
 
-        return view;
+        System.out.println(view);
     }
 
     public void humanPlayerDrawBone(DominoPlayer player, BoneYard boneYard){
