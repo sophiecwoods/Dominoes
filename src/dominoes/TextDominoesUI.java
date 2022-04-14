@@ -10,8 +10,13 @@ public class TextDominoesUI implements DominoUI {
     @Override
     public void display(DominoPlayer[] dominoPlayers, Table table, BoneYard boneYard) {
 
+
         //display bones on table
         viewOfBonesOnTable(table);
+
+        // Show the number of bones a computer player has.
+        showBones(dominoPlayers[0]);
+        showBones(dominoPlayers[1]);
     }
 
     @Override
@@ -92,9 +97,12 @@ public class TextDominoesUI implements DominoUI {
         return 0;
     }
 
-    public int showBones(DominoPlayer player)
+    public void showBones(DominoPlayer player)
     {
-        return 0;
+        if(player.getName() == "Computer Player") {
+            System.out.print("Number of bones " + player.getName() + " has: ");
+            System.out.println(player.numInHand());
+        }
     }
 
     public void showBonesInHand(DominoPlayer player){
