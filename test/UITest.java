@@ -76,13 +76,16 @@ public class UITest {
 
     @Test
     void currentRound() {
-        assertEquals(0, textDominoesUI.showCurrentRound());
+        String printedString = "Current Round: 0\n";
+        textDominoesUI.showCurrentRound();
+        assertEquals(printedString, outContent.toString());
     }
 
     @Test
     void showBones() {
-        DominoPlayer player = new ComputerPlayer();
-        assertEquals(0, textDominoesUI.showBones(player));
+        String printedString = "Number of bones Computer Player has: 0\n";
+        textDominoesUI.showBones(player1);
+        assertEquals(printedString, outContent.toString());
     }
 
     @Test
