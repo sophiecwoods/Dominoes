@@ -70,11 +70,6 @@ public class UITest {
     }
 
     @Test
-    void startNewGame() {
-        assertEquals(true, textDominoesUI.startNewGame());
-    }
-
-    @Test
     void currentRound() {
         String printedString = "Current Round: 0\n";
         textDominoesUI.showCurrentRound(player1);

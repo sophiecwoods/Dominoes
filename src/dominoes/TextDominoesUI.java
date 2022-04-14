@@ -9,9 +9,12 @@ import java.util.Scanner;
 public class TextDominoesUI implements DominoUI {
 
     private int numComputerPlayers = 0;
-
+    private Dominoes dom;
     @Override
     public void display(DominoPlayer[] dominoPlayers, Table table, BoneYard boneYard) {
+        // A way to start a new game at any time.
+        if(dominoPlayers[0] instanceof HumanPlayer || dominoPlayers[1] instanceof HumanPlayer)
+            shouldStartNewGame();
         // Show the current round of the game.
         showCurrentRound(dominoPlayers[0]);
 
@@ -30,6 +33,9 @@ public class TextDominoesUI implements DominoUI {
 
         // show each player's points
         displayCurrentPoints(dominoPlayers[0], dominoPlayers[1]);
+
+        showBonesInHand(dominoPlayers[0]);
+        showBonesInHand(dominoPlayers[1]);
     }
 
     @Override
@@ -108,9 +114,28 @@ public class TextDominoesUI implements DominoUI {
         }
     }
 
-    public boolean startNewGame()
+    private void shouldStartNewGame() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Press 1 to continue, press 2 to start a new game");
+        try {
+            var answer = input.nextInt();
+            if (answer == 2) {
+                startNewGame();
+            }
+        } catch (NumberFormatException e) {
+            // continue
+        }
+    }
+
+    public void startNewGame()
     {
-        return false;
+        int numberOfPointsToWin = askNumberOfPointsToWin();
+        DominoPlayer Player1 = choosePlayer("1");
+        DominoPlayer Player2 = choosePlayer("2");
+
+        dom = new Dominoes(this, Player1, Player2, numberOfPointsToWin, 6);
+        DominoPlayer winner = dom.play();
+        displayGameWinner(winner);
     }
 
     public void showCurrentRound(DominoPlayer player)
@@ -135,16 +160,19 @@ public class TextDominoesUI implements DominoUI {
     }
 
     public void showBonesInHand(DominoPlayer player){
-        Bone[] playerBones = player.bonesInHand();
+        if (player instanceof HumanPlayer) {
+            Bone[] playerBones = player.bonesInHand();
 
-        String bonesInHand = player.getName() + "'s bones: ";
-        for (int i = 0; i < playerBones.length; i++) {
-            bonesInHand += i + 1 + " Bone: [" + playerBones[i].left() + "-" + playerBones[i].right() + "]";
-            if (i != playerBones.length-1) {
-                bonesInHand += ", ";
+            String bonesInHand = player.getName() + "'s bones: ";
+            for (int i = 0; i < playerBones.length; i++) {
+                bonesInHand += i + 1 + " Bone: [" + playerBones[i].left() + "-" + playerBones[i].right() + "]";
+                if (i != playerBones.length-1) {
+                    bonesInHand += ", ";
+
+                }
             }
+            System.out.println(bonesInHand);
         }
-        System.out.println(bonesInHand);
     }
 
     public void numberOfBonesInBoneyard(BoneYard boneYard){
