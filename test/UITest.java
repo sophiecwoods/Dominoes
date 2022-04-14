@@ -159,6 +159,13 @@ public class UITest {
     }
 
     @Test
+    void displayRoundWinnerDraw() {
+        String printedString = "Round winner: draw\n";
+        textDominoesUI.displayRoundWinner((ComputerPlayer) null);
+        assertEquals(printedString, outContent.toString());
+    }
+
+    @Test
     void displayGameWinner() {
         inputHelper("50");
         String printedString = "Game Winner: Computer Player\n";

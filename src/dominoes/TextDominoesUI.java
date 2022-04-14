@@ -22,7 +22,12 @@ public class TextDominoesUI implements DominoUI {
 
     @Override
     public void displayRoundWinner(DominoPlayer dominoPlayer) {
-        System.out.println("Round winner: " + dominoPlayer.getName());
+        if (dominoPlayer != null) {
+            System.out.println("Round winner: " + dominoPlayer.getName());
+        }
+        else {
+            System.out.println("Round winner: draw");
+        }
     }
 
     @Override
