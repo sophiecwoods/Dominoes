@@ -143,8 +143,8 @@ public class TextDominoesUI implements DominoUI {
     }
 
     public void displayCurrentPoints(DominoPlayer player1, DominoPlayer player2) {
-        System.out.println("Points:\n" + player1.getName() + ": " + player1.getPoints() +"\n"
-                + player2.getName() + ": " + player2.getPoints());
+        System.out.println(player1.getName() + "'s points: " + player1.getPoints() +"\n"
+                + player2.getName() + "'s points: " + player2.getPoints());
     }
 
     public void displayGameWinner(DominoPlayer dominoPlayer) {

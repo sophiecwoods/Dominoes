@@ -146,7 +146,7 @@ public class UITest {
     void displayPoints() {
         player1.setPoints(5);
         player2.setPoints(10);
-        String printedString = "Points:\nComputer Player: 5\nHuman Player: 10\n";
+        String printedString = "Computer Player's points: 5\nHuman Player's points: 10\n";
         textDominoesUI.displayCurrentPoints(player1, player2);
         assertEquals(printedString, outContent.toString());
     }
