@@ -77,7 +77,7 @@ public class UITest {
     @Test
     void currentRound() {
         String printedString = "Current Round: 0\n";
-        textDominoesUI.showCurrentRound();
+        textDominoesUI.showCurrentRound(player1);
         assertEquals(printedString, outContent.toString());
     }
 

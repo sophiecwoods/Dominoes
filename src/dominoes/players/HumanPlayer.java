@@ -9,6 +9,8 @@ public class HumanPlayer implements DominoPlayer {
     private int points = 0;
     private String name;
     protected ArrayList<Bone> bones = new ArrayList<>();
+    private Integer currentRound = 0;
+    private final CubbyHole cubbyHole = CubbyHoleFactory.getCubbyHole();
 
     @Override
     public Play makePlay(Table table) throws CantPlayException {
@@ -72,6 +74,8 @@ public class HumanPlayer implements DominoPlayer {
     @Override
     public void newRound() {
         bones = new ArrayList<>();
+        currentRound ++;
+        cubbyHole.put(currentRound);
     }
 
     @Override
@@ -122,5 +126,9 @@ public class HumanPlayer implements DominoPlayer {
             return -1;
         }
         return selectedSideNum;
+    }
+
+    public int getCurrentRound() {
+        return currentRound;
     }
 }

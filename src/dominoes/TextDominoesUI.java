@@ -13,7 +13,7 @@ public class TextDominoesUI implements DominoUI {
     @Override
     public void display(DominoPlayer[] dominoPlayers, Table table, BoneYard boneYard) {
         // Show the current round of the game.
-        showCurrentRound();
+        showCurrentRound(dominoPlayers[0]);
 
         // Display bones on table
         viewOfBonesOnTable(table);
@@ -104,10 +104,17 @@ public class TextDominoesUI implements DominoUI {
         return false;
     }
 
-    public void showCurrentRound()
+    public void showCurrentRound(DominoPlayer player)
     {
-        System.out.println("Current Round:");
+        int round = 0;
 
+        if (player instanceof ComputerPlayer) {
+           round = ((ComputerPlayer) player).getCurrentRound();
+        }
+        else if (player instanceof HumanPlayer) {
+            round = ((HumanPlayer) player).getCurrentRound();
+        }
+        System.out.println("Current Round: " + round);
     }
 
     public void showBones(DominoPlayer player)
