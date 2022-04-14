@@ -10,6 +10,8 @@ public class TextDominoesUI implements DominoUI {
     @Override
     public void display(DominoPlayer[] dominoPlayers, Table table, BoneYard boneYard) {
 
+        //display bones on table
+        viewOfBonesOnTable(table);
     }
 
     @Override
@@ -95,7 +97,7 @@ public class TextDominoesUI implements DominoUI {
         return 0;
     }
 
-    public String showBonesInHand(DominoPlayer player){
+    public void showBonesInHand(DominoPlayer player){
         Bone[] playerBones = player.bonesInHand();
 
         String bonesInHand = "";
@@ -105,16 +107,30 @@ public class TextDominoesUI implements DominoUI {
                 bonesInHand += ", ";
             }
         }
-        return bonesInHand;
+        System.out.println(bonesInHand);
     }
 
-    public int numberOfBonesInBoneyard(){return 0;}
+    public void numberOfBonesInBoneyard(BoneYard boneYard){
+        System.out.println(boneYard.size());
+    }
 
-    public String viewOfBonesOnTable(Table table){return "";}
+    public void viewOfBonesOnTable(Table table){
+        Bone[] bonesOnTable = table.layout();
+        String view = "";
+        for (int i = 0; i < bonesOnTable.length; i++) {
+            view += "[" + bonesOnTable[i].left() + "-" + bonesOnTable[i].right() + "]";
+        }
 
-    public void humanPlayerDrawBone(DominoPlayer player, BoneYard boneYard){}
+        System.out.println(view);
+    }
 
-    public void humanPlayerPass(DominoPlayer player){}
+    public void humanPlayerDrawBone(DominoPlayer player, BoneYard boneYard){
+        player.draw(boneYard);
+    }
+
+    public void humanPlayerPass(DominoPlayer player){
+
+    }
 
     public void displayCurrentPoints(DominoPlayer player1, DominoPlayer player2) {
         System.out.println("Points:\n" + player1.getName() + ": " + player1.getPoints() +"\n"
