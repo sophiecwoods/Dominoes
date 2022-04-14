@@ -32,9 +32,17 @@ public class ComputerPlayerTest {
     }
 
     @Test
-    void makePlayValid() throws CantPlayException {
+    void validMakePlayLeft() throws CantPlayException {
         // test makePlay returns Play object when valid play is possible
         computerPlayer.bones = new ArrayList<>(Arrays.asList(new Bone(1, 4), new Bone(6, 6)));
+        Play actualPlay = computerPlayer.makePlay(table);
+        assertNotNull(actualPlay);
+    }
+
+    @Test
+    void validMakePlayRight() throws CantPlayException {
+        // test makePlay returns Play object when valid play is possible
+        computerPlayer.bones = new ArrayList<>(Arrays.asList(new Bone(2, 5), new Bone(6, 6)));
         Play actualPlay = computerPlayer.makePlay(table);
         assertNotNull(actualPlay);
     }

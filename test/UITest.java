@@ -77,7 +77,7 @@ public class UITest {
     @Test
     void currentRound() {
         String printedString = "Current Round: 0\n";
-        textDominoesUI.showCurrentRound();
+        textDominoesUI.showCurrentRound(player1);
         assertEquals(printedString, outContent.toString());
     }
 
@@ -146,7 +146,7 @@ public class UITest {
     void displayPoints() {
         player1.setPoints(5);
         player2.setPoints(10);
-        String printedString = "Points:\nComputer Player: 5\nHuman Player: 10\n";
+        String printedString = "Computer Player's points: 5\nHuman Player's points: 10\n";
         textDominoesUI.displayCurrentPoints(player1, player2);
         assertEquals(printedString, outContent.toString());
     }
@@ -156,6 +156,13 @@ public class UITest {
        String printedString = "Round winner: Computer Player\n";
        textDominoesUI.displayRoundWinner(player1);
        assertEquals(printedString, outContent.toString());
+    }
+
+    @Test
+    void displayRoundWinnerDraw() {
+        String printedString = "Round winner: draw\n";
+        textDominoesUI.displayRoundWinner((ComputerPlayer) null);
+        assertEquals(printedString, outContent.toString());
     }
 
     @Test

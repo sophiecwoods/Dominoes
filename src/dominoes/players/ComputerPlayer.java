@@ -8,6 +8,8 @@ public class ComputerPlayer implements DominoPlayer {
     private int points = 0;
     private String name;
     protected ArrayList<Bone> bones = new ArrayList<>();
+    private Integer currentRound = 0;
+    private final CubbyHole cubbyHole = CubbyHoleFactory.getCubbyHole();
 
     @Override
     public Play makePlay(Table table) throws CantPlayException {
@@ -55,6 +57,8 @@ public class ComputerPlayer implements DominoPlayer {
     @Override
     public void newRound() {
        bones = new ArrayList<>();
+       currentRound ++;
+       cubbyHole.put(currentRound);
     }
 
     @Override
@@ -77,4 +81,7 @@ public class ComputerPlayer implements DominoPlayer {
         name = s;
     }
 
+    public int getCurrentRound() {
+        return currentRound;
+    }
 }

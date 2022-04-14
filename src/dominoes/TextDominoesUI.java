@@ -7,10 +7,13 @@ import dominoes.players.HumanPlayer;
 import java.util.Scanner;
 
 public class TextDominoesUI implements DominoUI {
+
+    private int numComputerPlayers = 0;
+
     @Override
     public void display(DominoPlayer[] dominoPlayers, Table table, BoneYard boneYard) {
         // Show the current round of the game.
-        showCurrentRound();
+        showCurrentRound(dominoPlayers[0]);
 
         // Display bones on table
         viewOfBonesOnTable(table);
@@ -18,11 +21,18 @@ public class TextDominoesUI implements DominoUI {
         // Show the number of bones a computer player has.
         showBones(dominoPlayers[0]);
         showBones(dominoPlayers[1]);
+
+        displayCurrentPoints(dominoPlayers[0], dominoPlayers[1]);
     }
 
     @Override
     public void displayRoundWinner(DominoPlayer dominoPlayer) {
-        System.out.println("Round winner: " + dominoPlayer.getName());
+        if (dominoPlayer != null) {
+            System.out.println("Round winner: " + dominoPlayer.getName());
+        }
+        else {
+            System.out.println("Round winner: draw");
+        }
     }
 
     @Override
@@ -76,14 +86,15 @@ public class TextDominoesUI implements DominoUI {
 
         if(playerNum == 1){
             DominoPlayer player = new HumanPlayer();
-            // can we ask the user to enter the human player name here and then set it
-            player.setName("HumanPlayer");
+            Scanner in = new Scanner(System.in);
+            System.out.println("Enter player name: ");
+            String playerName = in.next();
+            player.setName(playerName);
             return player;
         } else {
+            numComputerPlayers ++;
             DominoPlayer player = new ComputerPlayer();
-            // if two computer players play against themselves then they will both have the same name
-            // which makes it hard to tell which one has won - can we set computerplayer1 and computerplayer2?
-            player.setName("ComputerPlayer");
+            player.setName("ComputerPlayer" + numComputerPlayers);
             return player;
         }
     }
@@ -93,10 +104,17 @@ public class TextDominoesUI implements DominoUI {
         return false;
     }
 
-    public void showCurrentRound()
+    public void showCurrentRound(DominoPlayer player)
     {
-        System.out.println("Current Round:");
+        int round = 0;
 
+        if (player instanceof ComputerPlayer) {
+           round = ((ComputerPlayer) player).getCurrentRound();
+        }
+        else if (player instanceof HumanPlayer) {
+            round = ((HumanPlayer) player).getCurrentRound();
+        }
+        System.out.println("Current Round: " + round);
     }
 
     public void showBones(DominoPlayer player)
@@ -126,7 +144,7 @@ public class TextDominoesUI implements DominoUI {
 
     public void viewOfBonesOnTable(Table table){
         Bone[] bonesOnTable = table.layout();
-        String view = "";
+        String view = "Bones on table: ";
         for (int i = 0; i < bonesOnTable.length; i++) {
             view += "[" + bonesOnTable[i].left() + "-" + bonesOnTable[i].right() + "]";
         }
@@ -143,8 +161,8 @@ public class TextDominoesUI implements DominoUI {
     }
 
     public void displayCurrentPoints(DominoPlayer player1, DominoPlayer player2) {
-        System.out.println("Points:\n" + player1.getName() + ": " + player1.getPoints() +"\n"
-                + player2.getName() + ": " + player2.getPoints());
+        System.out.println(player1.getName() + "'s points: " + player1.getPoints() +"\n"
+                + player2.getName() + "'s points: " + player2.getPoints());
     }
 
     public void displayGameWinner(DominoPlayer dominoPlayer) {
