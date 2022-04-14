@@ -18,8 +18,14 @@ public class HumanPlayer implements DominoPlayer {
         int rightPips = table.right();
 
         Scanner input = new Scanner(System.in);
-        System.out.println("Please select a bone");
-        int selectedBone = validBone(input.nextLine(), bones);
+        System.out.println("Please select a bone or press 0 for pass");
+        var in = input.nextLine();
+
+        if(passTurn(in)) {
+            throw new CantPlayException();
+        }
+
+        int selectedBone = validBone(in, bones);
 
         while (selectedBone == -1){
             selectedBone = validBone(input.nextLine(), bones);
@@ -111,6 +117,18 @@ public class HumanPlayer implements DominoPlayer {
             return -1;
         }
         return selectedBoneNum;
+    }
+
+    private boolean passTurn(String s) {
+        try {
+            int input = Integer.parseInt(s);
+            if(input == 0) {
+                return true;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+        return false;
     }
 
     public int validSide(String s){
