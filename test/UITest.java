@@ -94,7 +94,7 @@ public class UITest {
         player2.takeBack(bone1);
         Bone bone2 = new Bone(5,4);
         player2.takeBack(bone2);
-        String expected = "1 Bone: [2-1], 2 Bone: [5-4]\n";
+        String expected = player2.getName() + "'s bones: 1 Bone: [2-1], 2 Bone: [5-4]\n";
         textDominoesUI.showBonesInHand(player2);
         assertEquals(expected, outContent.toString());
     }
@@ -114,7 +114,7 @@ public class UITest {
         vector.addElement(new Bone(5,4));
         vector.addElement(new Bone(2,4));
         TableMock table = new TableMock(vector);
-        String expected = "[2-1][5-4][4-2]\n";
+        String expected = "Bones on table: [2-1][5-4][4-2]\n";
         textDominoesUI.viewOfBonesOnTable(table);
         assertEquals(expected, outContent.toString());
     }

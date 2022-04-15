@@ -18,6 +18,9 @@ public class TextDominoesUI implements DominoUI {
         // Display bones on table
         viewOfBonesOnTable(table);
 
+        showBonesInHand(dominoPlayers[0]);
+        showBonesInHand(dominoPlayers[1]);
+
         // Show the number of bones a computer player has.
         showBones(dominoPlayers[0]);
         showBones(dominoPlayers[1]);
@@ -128,7 +131,7 @@ public class TextDominoesUI implements DominoUI {
     public void showBonesInHand(DominoPlayer player){
         Bone[] playerBones = player.bonesInHand();
 
-        String bonesInHand = "";
+        String bonesInHand = player.getName() + "'s bones: ";
         for (int i = 0; i < playerBones.length; i++) {
             bonesInHand += i + 1 + " Bone: [" + playerBones[i].left() + "-" + playerBones[i].right() + "]";
             if (i != playerBones.length-1) {
