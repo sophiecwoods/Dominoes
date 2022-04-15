@@ -18,7 +18,8 @@ public class HumanPlayer implements DominoPlayer {
         int rightPips = table.right();
 
         Scanner input = new Scanner(System.in);
-        System.out.println("Please select a bone");
+        System.out.println(name + ", please select a bone.");
+
         int selectedBone = validBone(input.nextLine(), bones);
 
         while (selectedBone == -1){
