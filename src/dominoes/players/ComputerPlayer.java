@@ -58,6 +58,7 @@ public class ComputerPlayer implements DominoPlayer {
     public void newRound() {
        bones = new ArrayList<>();
        currentRound ++;
+       // use cubbyHole object to synchronise round
        cubbyHole.put(currentRound);
     }
 
