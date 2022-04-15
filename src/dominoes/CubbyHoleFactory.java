@@ -2,7 +2,11 @@ package dominoes;
 
 public class CubbyHoleFactory {
 
-    static CubbyHole cubbyHole = null;
+    private static CubbyHole cubbyHole = null;
+
+    private CubbyHoleFactory() {
+
+    }
 
     public static CubbyHole getCubbyHole() {
         if (cubbyHole == null) {
@@ -10,5 +14,4 @@ public class CubbyHoleFactory {
         }
         return cubbyHole;
     }
-
 }

@@ -11,6 +11,7 @@ public class HumanPlayer implements DominoPlayer {
     protected ArrayList<Bone> bones = new ArrayList<>();
     private Integer currentRound = 0;
     private final CubbyHole cubbyHole = CubbyHoleFactory.getCubbyHole();
+    private TextDominoesUI ui = new TextDominoesUI();
 
     @Override
     public Play makePlay(Table table) throws CantPlayException {
@@ -40,7 +41,7 @@ public class HumanPlayer implements DominoPlayer {
             || (selectedSide == 1 && (bone.left() == rightPips || bone.right() == rightPips))) {
             result = new Play(bone, selectedSide);
         } else {
-            System.out.println("Can't play");
+            ui.displayInvalidPlay(this);
             throw new CantPlayException();
         }
 
