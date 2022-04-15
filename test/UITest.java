@@ -102,7 +102,7 @@ public class UITest {
     @Test
     void numberOfBonesInBoneyard(){
         BoneYard boneYard = new BoneYard(6);
-        String expected = String.valueOf(boneYard.size()) + "\n";
+        String expected = String.valueOf("Number of bones in boneyard: " + boneYard.size()) + "\n";
         textDominoesUI.numberOfBonesInBoneyard(boneYard);
         assertEquals(expected, outContent.toString());
     }

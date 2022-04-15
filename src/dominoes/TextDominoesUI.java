@@ -25,6 +25,10 @@ public class TextDominoesUI implements DominoUI {
         showBones(dominoPlayers[0]);
         showBones(dominoPlayers[1]);
 
+        // show the number of bones in boneyard
+        numberOfBonesInBoneyard(boneYard);
+
+        // show each player's points
         displayCurrentPoints(dominoPlayers[0], dominoPlayers[1]);
     }
 
@@ -144,7 +148,7 @@ public class TextDominoesUI implements DominoUI {
     }
 
     public void numberOfBonesInBoneyard(BoneYard boneYard){
-        System.out.println(boneYard.size());
+        System.out.println("Number of bones in boneyard: " + boneYard.size());
     }
 
     public void viewOfBonesOnTable(Table table){
