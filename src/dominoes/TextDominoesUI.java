@@ -52,7 +52,8 @@ public class TextDominoesUI implements DominoUI {
             Scanner input = new Scanner(System.in);
             System.out.println("Specify the number of points necessary to win:");
             try {
-                numOfPoints = input.nextInt();
+                String userInput = input.next();
+                numOfPoints = Integer.parseInt(userInput);
                 if (numOfPoints > 0 && numOfPoints < Integer.MAX_VALUE) {
                     validInput = true;
                 }
@@ -75,11 +76,12 @@ public class TextDominoesUI implements DominoUI {
         boolean validInput = false;
         while (!validInput) {
             try {
-                playerNum = input.nextInt();
+                String userInput = input.next();
+                playerNum = Integer.parseInt(userInput);
                 if (playerNum == 1 || playerNum == 2) {
                     validInput = true;
                 } else {
-                    System.out.println("Invalid input. Please try again.");
+                    System.out.println("Invalid input. Please try again here.");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please try again.");
@@ -165,7 +167,7 @@ public class TextDominoesUI implements DominoUI {
 
     public void displayCurrentPoints(DominoPlayer player1, DominoPlayer player2) {
         System.out.println(player1.getName() + "'s points: " + player1.getPoints() +"\n"
-                + player2.getName() + "'s points: " + player2.getPoints());
+                + player2.getName() + "'s points: " + player2.getPoints() + "\n");
     }
 
     public void displayGameWinner(DominoPlayer dominoPlayer) {
