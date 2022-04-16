@@ -20,7 +20,8 @@ public class HumanPlayer implements DominoPlayer {
 
         Scanner input = new Scanner(System.in);
 
-        System.out.println(name + ", please select a bone, press 0 for pass, or b to draw a bone.");
+        System.out.println(name + ", please select a bone, press 0 for pass, or b to draw a bone. " +
+                "Press n to start a new game.");
 
         var in = input.nextLine();
 
@@ -110,11 +111,13 @@ public class HumanPlayer implements DominoPlayer {
     public int validBone(String s, ArrayList<Bone> a) throws CantPlayException {
         if (s.equals("b")){
             throw new CantPlayException();
+        } else if (s.equals("n")){
+            ui.startNewGame();
         }
         int selectedBoneNum = -1;
         try {
             selectedBoneNum = Integer.parseInt(s)-1;
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             System.out.println("Not a valid input, please input numbers, or b to draw from boneyard.");
             return -1;
         }
@@ -131,7 +134,7 @@ public class HumanPlayer implements DominoPlayer {
             if(input == 0) {
                 return true;
             }
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             return false;
         }
         return false;
