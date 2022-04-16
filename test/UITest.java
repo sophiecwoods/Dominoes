@@ -115,16 +115,6 @@ public class UITest {
     }
 
     @Test
-    void humanPlayerDrawBone(){
-        BoneYard boneYard = new BoneYard(6);
-        int original = player2.numInHand();
-        int expected = original + 1;
-        textDominoesUI.humanPlayerDrawBone(player2, boneYard);
-        int actual = player2.numInHand();
-        assertEquals(expected, actual);
-    }
-
-    @Test
     void humanPlayerPass() {
 //        Vector vector = new Vector();
 //        vector.addElement(new Bone(1,2));
