@@ -21,9 +21,6 @@ public class TextDominoesUI implements DominoUI {
         // Display bones on table
         viewOfBonesOnTable(table);
 
-        showBonesInHand(dominoPlayers[0]);
-        showBonesInHand(dominoPlayers[1]);
-
         // Show the number of bones a computer player has.
         showBones(dominoPlayers[0]);
         showBones(dominoPlayers[1]);
@@ -187,10 +184,6 @@ public class TextDominoesUI implements DominoUI {
         }
 
         System.out.println(view);
-    }
-
-    public void humanPlayerDrawBone(DominoPlayer player, BoneYard boneYard){
-        player.draw(boneYard);
     }
 
     public void humanPlayerPass(DominoPlayer player){
