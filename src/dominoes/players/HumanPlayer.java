@@ -9,6 +9,9 @@ public class HumanPlayer implements DominoPlayer {
     private int points = 0;
     private String name;
     protected ArrayList<Bone> bones = new ArrayList<>();
+    private Integer currentRound = 0;
+    private final CubbyHole cubbyHole = CubbyHoleFactory.getCubbyHole();
+    private TextDominoesUI ui = new TextDominoesUI();
 
     @Override
     public Play makePlay(Table table) throws CantPlayException {
@@ -16,8 +19,17 @@ public class HumanPlayer implements DominoPlayer {
         int rightPips = table.right();
 
         Scanner input = new Scanner(System.in);
-        System.out.println("Please select a bone");
-        int selectedBone = validBone(input.nextLine(), bones);
+
+        System.out.println(name + ", please select a bone or press 0 for pass.");
+
+        var in = input.nextLine();
+
+        if(passTurn(in)) {
+            throw new CantPlayException();
+        }
+
+        int selectedBone = validBone(in, bones);
+
 
         while (selectedBone == -1){
             selectedBone = validBone(input.nextLine(), bones);
@@ -37,7 +49,7 @@ public class HumanPlayer implements DominoPlayer {
             || (selectedSide == 1 && (bone.left() == rightPips || bone.right() == rightPips))) {
             result = new Play(bone, selectedSide);
         } else {
-            System.out.println("Can't play");
+            ui.displayInvalidPlay(this);
             throw new CantPlayException();
         }
 
@@ -71,7 +83,9 @@ public class HumanPlayer implements DominoPlayer {
 
     @Override
     public void newRound() {
-        this.points = 0;
+        bones = new ArrayList<>();
+        currentRound ++;
+        cubbyHole.put(currentRound);
     }
 
     @Override
@@ -109,6 +123,18 @@ public class HumanPlayer implements DominoPlayer {
         return selectedBoneNum;
     }
 
+    private boolean passTurn(String s) {
+        try {
+            int input = Integer.parseInt(s);
+            if(input == 0) {
+                return true;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+        return false;
+    }
+
     public int validSide(String s){
         int selectedSideNum = -1;
         try {
@@ -122,5 +148,9 @@ public class HumanPlayer implements DominoPlayer {
             return -1;
         }
         return selectedSideNum;
+    }
+
+    public int getCurrentRound() {
+        return currentRound;
     }
 }

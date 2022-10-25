@@ -70,19 +70,17 @@ public class UITest {
     }
 
     @Test
-    void startNewGame() {
-        assertEquals(true, textDominoesUI.startNewGame());
-    }
-
-    @Test
     void currentRound() {
-        assertEquals(0, textDominoesUI.showCurrentRound());
+        String printedString = "Current Round: 0\n";
+        textDominoesUI.showCurrentRound(player1);
+        assertEquals(printedString, outContent.toString());
     }
 
     @Test
     void showBones() {
-        DominoPlayer player = new ComputerPlayer();
-        assertEquals(0, textDominoesUI.showBones(player));
+        String printedString = "Number of bones Computer Player has: 0\n";
+        textDominoesUI.showBones(player1);
+        assertEquals(printedString, outContent.toString());
     }
 
     @Test
@@ -91,7 +89,7 @@ public class UITest {
         player2.takeBack(bone1);
         Bone bone2 = new Bone(5,4);
         player2.takeBack(bone2);
-        String expected = "1 Bone: [2-1], 2 Bone: [5-4]\n";
+        String expected = player2.getName() + "'s bones: 1 Bone: [2-1], 2 Bone: [5-4]\n";
         textDominoesUI.showBonesInHand(player2);
         assertEquals(expected, outContent.toString());
     }
@@ -99,7 +97,7 @@ public class UITest {
     @Test
     void numberOfBonesInBoneyard(){
         BoneYard boneYard = new BoneYard(6);
-        String expected = String.valueOf(boneYard.size()) + "\n";
+        String expected = String.valueOf("Number of bones in boneyard: " + boneYard.size()) + "\n";
         textDominoesUI.numberOfBonesInBoneyard(boneYard);
         assertEquals(expected, outContent.toString());
     }
@@ -111,7 +109,7 @@ public class UITest {
         vector.addElement(new Bone(5,4));
         vector.addElement(new Bone(2,4));
         TableMock table = new TableMock(vector);
-        String expected = "[2-1][5-4][4-2]\n";
+        String expected = "Bones on table: [2-1][5-4][4-2]\n";
         textDominoesUI.viewOfBonesOnTable(table);
         assertEquals(expected, outContent.toString());
     }
@@ -143,7 +141,7 @@ public class UITest {
     void displayPoints() {
         player1.setPoints(5);
         player2.setPoints(10);
-        String printedString = "Points:\nComputer Player: 5\nHuman Player: 10\n";
+        String printedString = "Computer Player's points: 5\nHuman Player's points: 10\n\n";
         textDominoesUI.displayCurrentPoints(player1, player2);
         assertEquals(printedString, outContent.toString());
     }
@@ -156,18 +154,24 @@ public class UITest {
     }
 
     @Test
+    void displayRoundWinnerDraw() {
+        String printedString = "Round winner: draw\n";
+        textDominoesUI.displayRoundWinner((ComputerPlayer) null);
+        assertEquals(printedString, outContent.toString());
+    }
+
+    @Test
     void displayGameWinner() {
         inputHelper("50");
-        //the number of points are stored in Dominoes. It was bad to store it in the UI so this will need to be refactored.
-        String printedString = "Winner: Computer Player\n";
-        textDominoesUI.displayGameWinner(player1, player2);
+        String printedString = "Game Winner: Computer Player\n";
+        textDominoesUI.displayGameWinner(player1);
         assertEquals(printedString, outContent.toString());
     }
 
     @Test
     void displayInvalidMove() {
-        String printedString = "Invalid move";
-        textDominoesUI.displayInvalidMove();
+        String printedString = "Invalid move by Computer Player\n";
+        textDominoesUI.displayInvalidPlay(player1);
         assertEquals(printedString, outContent.toString());
     }
 }
