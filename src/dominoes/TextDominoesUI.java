@@ -13,16 +13,13 @@ public class TextDominoesUI implements DominoUI {
     @Override
     public void display(DominoPlayer[] dominoPlayers, Table table, BoneYard boneYard) {
         // A way to start a new game at any time.
-        if(dominoPlayers[0] instanceof HumanPlayer || dominoPlayers[1] instanceof HumanPlayer)
-            shouldStartNewGame();
+        //if(dominoPlayers[0] instanceof HumanPlayer || dominoPlayers[1] instanceof HumanPlayer)
+            //shouldStartNewGame();
         // Show the current round of the game.
         showCurrentRound(dominoPlayers[0]);
 
         // Display bones on table
         viewOfBonesOnTable(table);
-
-        showBonesInHand(dominoPlayers[0]);
-        showBonesInHand(dominoPlayers[1]);
 
         // Show the number of bones a computer player has.
         showBones(dominoPlayers[0]);
@@ -34,6 +31,7 @@ public class TextDominoesUI implements DominoUI {
         // show each player's points
         displayCurrentPoints(dominoPlayers[0], dominoPlayers[1]);
 
+        // show bones in hands
         showBonesInHand(dominoPlayers[0]);
         showBonesInHand(dominoPlayers[1]);
     }
@@ -114,19 +112,6 @@ public class TextDominoesUI implements DominoUI {
         }
     }
 
-    private void shouldStartNewGame() {
-        Scanner input = new Scanner(System.in);
-        System.out.println("Press 1 to continue, press 2 to start a new game");
-        try {
-            var answer = input.nextInt();
-            if (answer == 2) {
-                startNewGame();
-            }
-        } catch (NumberFormatException e) {
-            // continue
-        }
-    }
-
     public void startNewGame()
     {
         int numberOfPointsToWin = askNumberOfPointsToWin();
@@ -187,10 +172,6 @@ public class TextDominoesUI implements DominoUI {
         }
 
         System.out.println(view);
-    }
-
-    public void humanPlayerDrawBone(DominoPlayer player, BoneYard boneYard){
-        player.draw(boneYard);
     }
 
     public void humanPlayerPass(DominoPlayer player){
